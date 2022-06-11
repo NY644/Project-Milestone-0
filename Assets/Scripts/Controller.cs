@@ -10,12 +10,16 @@ public abstract class Controller : MonoBehaviour
     public abstract void Start();
 
 
+
+
     // Update is called once per frame
     public abstract void Update();
+
+
+    public abstract void MakeDecisions();
     
 
-    public virtual void MakeDecisions()
-    {
+    
 
-    }
+    
 }

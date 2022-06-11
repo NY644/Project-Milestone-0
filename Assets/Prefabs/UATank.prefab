@@ -150,9 +150,13 @@ MonoBehaviour:
   mover: {fileID: 7538756136248972586}
   shooter: {fileID: 8587004039952147111}
   bulletPrefab: {fileID: 4143621705662861532, guid: 9337647d328e48648bbff67da1a2b9b3, type: 3}
-  damageDone: 20
+  bigBulletPrefab: {fileID: 4143621705662861532, guid: 4019d90f92a142a4eb0bf38a19439f8c, type: 3}
+  damageDone: 100
+  bigDamageDone: 45
+  bigShootForce: 750
   shootForce: 1000
-  timeBetweenShots: 1
+  bigTimeBetweenShots: 1.5
+  timeBetweenShots: 0.6
 --- !u!114 &8587004039952147111
 MonoBehaviour:
   m_ObjectHideFlags: 0

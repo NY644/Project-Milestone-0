@@ -12,6 +12,8 @@ public abstract class AIController : Controller
 
     public float timeEnteredCurrentState;
 
+    public GameObject AITarget;
+
   
     public virtual void ChangeState(AIStates newState)
     {
@@ -19,6 +21,8 @@ public abstract class AIController : Controller
         timeEnteredCurrentState = Time.time;
         // Change our state
         currentState = newState;
+
+        Debug.Log("Changed state to" + newState.ToString());
     }
 
     public virtual void DoIdleState()
@@ -32,6 +36,12 @@ public abstract class AIController : Controller
         // and set this AI's speed to max speed
 
         // Do the chase action!
+        Chase(AITarget);
+    }
+
+    public virtual void DoChangeTargetState()
+    {
+        AITarget = GameManager.instance.players[0].pawn.gameObject;
     }
 
     public virtual void DoAttackState()
@@ -42,10 +52,29 @@ public abstract class AIController : Controller
 
     public virtual void Chase(GameObject chaseTarget)
     {
-        // Turn towards our target
-        pawn.TurnTowards(chaseTarget.transform.position);
-        // Move forwards
-        pawn.MoveForward();
+        if (chaseTarget != null)
+        {
+            // Turn towards our target
+            pawn.TurnTowards(chaseTarget.transform.position);
 
+            // Move forwards
+            pawn.MoveForward();
+        }
+
+        else
+        {
+            Debug.Log("Chase was passed a null target.");
+        }
+
+    }
+
+    public virtual bool IsTimePassed(float amountOfTime)
+    {
+        if (Time.time - timeEnteredCurrentState >= amountOfTime)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

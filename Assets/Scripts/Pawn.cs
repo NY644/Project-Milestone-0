@@ -46,6 +46,11 @@ public class Pawn : MonoBehaviour
 
     }
 
+    public virtual void BigShoot()
+    {
+
+    }
+
     public virtual void TurnTowards(Vector3 targetPosition)
     {
 

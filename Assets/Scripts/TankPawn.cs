@@ -8,14 +8,17 @@ public class TankPawn : Pawn
     public Shooter shooter;
 
     public GameObject bulletPrefab;
+    public GameObject bigBulletPrefab;
     public float damageDone;
+    public float bigDamageDone;
+    public float bigShootForce;
     public float shootForce;
     
 
     // private float nextShootTime;
     private float countdown;
 
-
+    public float bigTimeBetweenShots;
     public float timeBetweenShots;
     // Start is called before the first frame update
     public override void Start()
@@ -49,6 +52,23 @@ public class TankPawn : Pawn
 
            
         }
+    }
+
+    public override void BigShoot()
+    {
+        // Check if countdown is <= 0
+        if (countdown <= 0)
+        {
+            // If yes, then shoot
+            shooter.Shoot(bigBulletPrefab, bigShootForce,
+                bigDamageDone, this);
+
+            // Reset countdown
+            countdown = bigTimeBetweenShots;
+
+
+        }
+
     }
 
     public override void MoveForward()

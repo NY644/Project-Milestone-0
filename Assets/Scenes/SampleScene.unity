@@ -312,7 +312,8 @@ MonoBehaviour:
   moveBackward: 115
   turnRight: 100
   turnLeft: 97
-  shoot: 32
+  shoot: 323
+  bigShoot: 324
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593338153}
+  - component: {fileID: 1593338154}
   m_Layer: 0
   m_Name: AI_One
   m_TagString: Untagged
@@ -428,6 +430,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593338154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593338152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5a108ff5c5e094982c5660e952f35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawn: {fileID: 6490976136933338514, guid: fdff824fabfd1b448914bf5b53913fae, type: 3}
+  currentState: 0
+  timeEnteredCurrentState: 0
+  AITarget: {fileID: 0}
 --- !u!1 &2058438489
 GameObject:
   m_ObjectHideFlags: 0

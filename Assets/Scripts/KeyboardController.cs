@@ -9,6 +9,7 @@ public class KeyboardController : Controller
     public KeyCode turnRight;
     public KeyCode turnLeft;
     public KeyCode shoot;
+    public KeyCode bigShoot;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -59,6 +60,12 @@ public class KeyboardController : Controller
         {
             pawn.Shoot();
             Debug.Log("Shooting!");
+        }
+
+        if (Input.GetKey(bigShoot))
+        {
+            pawn.BigShoot();
+            Debug.Log("Big Shoot!");
         }
     }
 }
