@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public List<KeyboardController> players;
+    public List<KeyboardController> AI;
     public GameObject pawnPrefab;
     // Start is called before the first frame update
     void Awake()
@@ -29,8 +30,14 @@ public class GameManager : MonoBehaviour
         {
             SpawnPlayer(0);
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SpawnAI();
+        }
     }
 
+    // Press P to spawn player Tank
     public void SpawnPlayer(int playerNumber)
     {
        GameObject newPawn = Instantiate(pawnPrefab, Vector3.zero,
@@ -43,5 +50,22 @@ public class GameManager : MonoBehaviour
                 players[playerNumber].pawn = newPawnScript;
             }
         }
+    }
+
+    // Press R to spawn AI Tank
+    public void SpawnAI()
+    {
+        GameObject newController = new GameObject();
+
+        AIController_Simple AI_Tank = newController.AddComponent<AIController_Simple>();
+
+        GameObject newPawn = Instantiate(pawnPrefab, Vector3.zero,
+           Quaternion.identity);
+
+        Pawn newPawnScript = newPawn.GetComponent<Pawn>();
+
+        AI_Tank.pawn = newPawnScript;
+
+        
     }
 }

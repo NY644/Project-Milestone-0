@@ -34,8 +34,14 @@ public class AIController_Simple : AIController
                 // Check for conditions
                 if (IsTimePassed(3))
                 {
-                    ChangeState(AIStates.Chase);
+                    ChangeState(AIStates.Patrol);
                 }
+                break;
+
+            case AIStates.Patrol:
+                DoPatrolState();
+                // Check for Conditions
+                // Stay in patrol FOREVER...
                 break;
 
             case AIStates.Chase:

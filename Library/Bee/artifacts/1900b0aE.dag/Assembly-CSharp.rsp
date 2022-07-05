@@ -357,11 +357,19 @@
 "Assets/Scripts/Health.cs"
 "Assets/Scripts/KeyboardController.cs"
 "Assets/Scripts/Mover.cs"
+"Assets/Scripts/NoiseMaker.cs"
 "Assets/Scripts/Pawn.cs"
+"Assets/Scripts/PickupHealth.cs"
+"Assets/Scripts/PickupSpeed.cs"
+"Assets/Scripts/PowerUp.cs"
+"Assets/Scripts/PowerUpHealth.cs"
+"Assets/Scripts/PowerUpManager.cs"
+"Assets/Scripts/PowerUpSpeed.cs"
 "Assets/Scripts/Projectile.cs"
 "Assets/Scripts/Shooter.cs"
 "Assets/Scripts/TankMover.cs"
 "Assets/Scripts/TankPawn.cs"
+"Assets/Scripts/TestScript.cs"
 -langversion:9.0
 
 /deterministic

@@ -12,6 +12,19 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void Heal (float amount)
+    {
+        currentHealth = currentHealth + amount;
+
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+            // TODO: Cool stuff on overheal
+        }
+    }
+
     public void TakeDamage(float amount, Pawn owner)
     {
         currentHealth = currentHealth - amount;
