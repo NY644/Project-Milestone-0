@@ -149,6 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   turnSpeed: 100
+  killValue: 0
+  controller: {fileID: 0}
   mover: {fileID: 7538756136248972586}
   shooter: {fileID: 8587004039952147111}
   bulletPrefab: {fileID: 4143621705662861532, guid: 9337647d328e48648bbff67da1a2b9b3, type: 3}
@@ -186,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  myPawn: {fileID: 0}
 --- !u!114 &9932786297435203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4294013008691360393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.591, z: 1.108}
+  m_LocalPosition: {x: -0, y: 0.591, z: 1.582}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
