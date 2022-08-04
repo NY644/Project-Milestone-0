@@ -6,6 +6,7 @@ public class PickupLandMine : MonoBehaviour
 {
     public PowerupLandMine powerup;
 
+    // Function for when an object touches the Mine pickup.
     public void OnTriggerEnter(Collider other)
     {
         PowerUpManager otherPowerupManager =

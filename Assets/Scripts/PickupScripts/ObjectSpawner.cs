@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    // These help decide if an object can spawn
     public GameObject objectToSpawn;
     public float timeBetweenSpawns;
     public bool isSpawnedAtStart;
@@ -37,6 +38,7 @@ public class ObjectSpawner : MonoBehaviour
             // An object exists, do nothing!
         }
 
+        // else spawn the pickup if it's possbile
         else
         {
            

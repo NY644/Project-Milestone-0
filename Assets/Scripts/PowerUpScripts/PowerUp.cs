@@ -4,7 +4,8 @@ using UnityEngine;
 
 [System.Serializable]
 
-// This allows the PowerUp to be picked up or removed from intended target
+// This allows the PowerUp to be
+// picked up or removed from intended target
 public abstract class PowerUp
 {
     public float lifespan;

@@ -259,8 +259,14 @@ MonoBehaviour:
   - {fileID: 11411052, guid: 544224bd683d0624c89b4b827a3d4287, type: 3}
   - {fileID: 11411052, guid: a393e78e730d73844b071aebb6b42ed5, type: 3}
   - {fileID: 11411052, guid: f9474fcdd3d84e9438c2e5943e7bbb75, type: 3}
-  numberOfRows: 3
-  numberOfCols: 3
+  - {fileID: 11411052, guid: cacac3f358d60384fa02d98617ccbb37, type: 3}
+  - {fileID: 11411052, guid: 6902c3ba365295147a1f48cde3d643e6, type: 3}
+  - {fileID: 11411052, guid: 2d643470b2ba1b845aec3ff9296169e6, type: 3}
+  - {fileID: 11411052, guid: 6f83fd3d60ba7ff4fb922925ff8a4b5a, type: 3}
+  - {fileID: 11411052, guid: 42bd5e6534ef5e84cbb87efa77956572, type: 3}
+  - {fileID: 11411052, guid: 6936ff4d78371004c9a81f3fb70de8ed, type: 3}
+  numberOfRows: 5
+  numberOfCols: 5
   randomSeed: 0
 --- !u!4 &236474466
 Transform:
@@ -312,6 +318,12 @@ MonoBehaviour:
   titleScreenStateObject: {fileID: 0}
   mainMenuScreenStateObject: {fileID: 0}
   gamePlayStateObject: {fileID: 0}
+  optionsScreenStateObject: {fileID: 0}
+  gameOverScreenStateObject: {fileID: 0}
+  numberOfPlayers: 0
+  isMapOfTheDay: 0
+  sfxVolume: 0
+  musicVolume: 0
 --- !u!4 &1187412559
 Transform:
   m_ObjectHideFlags: 0

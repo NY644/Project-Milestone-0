@@ -6,6 +6,7 @@ public class PickupHealth : MonoBehaviour
 {
    public PowerUpHealth powerup;
 
+    // Function for when an object touches the Health pickup.
     public void OnTriggerEnter(Collider other)
     {
         PowerUpManager otherPowerupManager = 

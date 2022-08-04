@@ -353,10 +353,12 @@
 "Assets/Scripts/BulletScripts/BigShooter.cs"
 "Assets/Scripts/BulletScripts/Projectile.cs"
 "Assets/Scripts/BulletScripts/Shooter.cs"
+"Assets/Scripts/CameraController.cs"
 "Assets/Scripts/ControllerScripts/AIController.cs"
 "Assets/Scripts/ControllerScripts/AIController_Simple.cs"
 "Assets/Scripts/ControllerScripts/Controller.cs"
 "Assets/Scripts/ControllerScripts/KeyboardController.cs"
+"Assets/Scripts/HealthBarTestScript.cs"
 "Assets/Scripts/LevelScripts/GameManager.cs"
 "Assets/Scripts/LevelScripts/LevelGenerator.cs"
 "Assets/Scripts/LevelScripts/LevelGeneratorTestScript.cs"
@@ -376,6 +378,10 @@
 "Assets/Scripts/TankScripts/Pawn.cs"
 "Assets/Scripts/TankScripts/TankMover.cs"
 "Assets/Scripts/TankScripts/TankPawn.cs"
+"Assets/Scripts/TankScripts/TankSpawn.cs"
+"Assets/Scripts/UIScripts/UIMainMenu.cs"
+"Assets/Scripts/UIScripts/UIOptionsScreen.cs"
+"Assets/Scripts/UIScripts/UITitleScreen.cs"
 -langversion:9.0
 
 /deterministic

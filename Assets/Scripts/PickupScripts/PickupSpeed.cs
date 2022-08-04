@@ -7,8 +7,8 @@ public class PickupSpeed : MonoBehaviour
     public PowerUpSpeed powerup;
 
 
-    
 
+    // Function for when an object touches the Speed pickup.
     public void OnTriggerEnter(Collider other)
     {
         PowerUpManager otherPowerupManager =
