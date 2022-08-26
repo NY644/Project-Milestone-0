@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+// Might need to add using UnityEngine.UI
 
 public class GameManager : MonoBehaviour
 {
@@ -28,9 +29,29 @@ public class GameManager : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+    public LevelGenerator roomGen;
+
+    // Variables for Keyboard controllers
+    public KeyboardController WASDprefab;
+    public KeyboardController Arrowprefab;
+
+    // Test variables
+    public GameObject[] spawnLocations;
+    public GameObject player;
+
+    private Vector3 respawnLocation;
+
     // Start is called before the first frame update
+
+   void Start()
+    {
+        ActivateTitleScreenState();
+    }
+
     void Awake()
     {
+        
+
         if (instance == null)
         {
             instance = this;
@@ -46,7 +67,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager.instance.audioMixer.SetFloat("MusicVolume", 1.0f);
+       // GameManager.instance.audioMixer.SetFloat("MusicVolume", 1.0f);
 
         // Press P to spawn player
         if (Input.GetKeyDown(KeyCode.P))
@@ -68,10 +89,15 @@ public class GameManager : MonoBehaviour
     // Press P to spawn player Tank
     public void SpawnPlayer(int playerNumber)
     {
+        // Test code
+        //int spawn = Random.Range(0, spawnLocations.Length);
+        //GameObject.Instantiate(player, spawnLocations[spawn].transform.position, Quaternion.identity);
+
+
         Vector3 randomSpawnPosition = tankSpawns[Random.Range(0, tankSpawns.Count)].transform.position;
 
-       GameObject newPawn = Instantiate(pawnPrefab, Vector3.zero,
-           Quaternion.identity);
+        GameObject newPawn = Instantiate(pawnPrefab, randomSpawnPosition,
+            Quaternion.identity);
         Pawn newPawnScript = newPawn.GetComponent<Pawn>();
         if (newPawnScript != null)
         {
@@ -111,6 +137,7 @@ public class GameManager : MonoBehaviour
     {
         titleScreenStateObject.SetActive(false);
         mainMenuScreenStateObject.SetActive(false);
+        optionsScreenStateObject.SetActive(false);
     }
 
     // Puts game in main menu state
@@ -132,11 +159,23 @@ public class GameManager : MonoBehaviour
     {
         DeactivateAllStates();
         gamePlayStateObject.SetActive(true);
-        // TODO: Generate my map
-        // TODO: Spawn my player controller(s)
+
+        
+        roomGen.GenerateLevel();
+
+        //spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        //player = (GameObject)Resources.Load("UATank", typeof(GameObject));
+
+        //respawnLocation = player.transform.position;
+
+        // TODO: 1 Spawn my player controller(s)
+        KeyboardController player1 = Instantiate(WASDprefab);
         // TODO: Spawn the player pawn(s)
+        SpawnPlayer(0);
         // TODO: Spawn the enemies
         // TODO: Make sure scores set to 0
+        player1.score = 0;
         // If One Player, set a camera for one player
         // If two player, set/create? cameras for two player
     }

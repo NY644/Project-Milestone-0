@@ -36,12 +36,12 @@ public class CameraController : MonoBehaviour
         //TODO: Make Full Screen
     }
 
-    public void MakeRightSideSplitScreen()
+    public void MakeLeftSideSplitScreen()
     {
         cameraComponent.rect = new Rect(0, 0, 0.5f, 1);
     }
 
-    public void MakeLeftSideSplitScreen()
+    public void MakeRightSideSplitScreen()
     {
         cameraComponent.rect = new Rect(0.5f, 0, 0.5f, 1);
     }

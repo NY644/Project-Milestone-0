@@ -19,6 +19,7 @@ public class BigShooter : MonoBehaviour
         {
             projectile.damageDone = damageDone;
             projectile.owner = shooter;
+            // Put shoot sound effect here.
         }
 
 

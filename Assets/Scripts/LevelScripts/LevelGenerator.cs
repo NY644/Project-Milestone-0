@@ -13,6 +13,7 @@ public class LevelGenerator : MonoBehaviour
 
     // List of all rooms we could choose from
     public List<Room> possibleRooms;
+    public List<TankSpawn> Spawnpoints;
 
     // Data about our map
     private float roomWidth = 50.0f;

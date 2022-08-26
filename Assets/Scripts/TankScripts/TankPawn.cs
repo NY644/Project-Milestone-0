@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TankPawn : Pawn
 {
     public TankMover mover;
@@ -13,7 +14,10 @@ public class TankPawn : Pawn
     public float bigDamageDone;
     public float bigShootForce;
     public float shootForce;
-    
+
+    public AudioClip TankFire;
+    public AudioClip BigTankFire;
+    public AudioSource speaker;
 
     // private float nextShootTime;
     private float countdown;
@@ -46,6 +50,7 @@ public class TankPawn : Pawn
             // If yes, then shoot
             shooter.Shoot(bulletPrefab, shootForce,
                 damageDone, this);
+            speaker.PlayOneShot(TankFire);
 
             // Reset countdown
             countdown = timeBetweenShots;
@@ -62,6 +67,7 @@ public class TankPawn : Pawn
             // If yes, then shoot
             shooter.Shoot(bigBulletPrefab, bigShootForce,
                 bigDamageDone, this);
+            speaker.PlayOneShot(BigTankFire);
 
             // Reset countdown
             countdown = bigTimeBetweenShots;
