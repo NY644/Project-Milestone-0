@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public List<KeyboardController> players;
     public List<KeyboardController> AI;
     public GameObject pawnPrefab;
-    public List<TankSpawn> tankSpawns;
+    public TankSpawn[] spawn;
+    private Transform playerSpawnTransform;
 
     // These are different states the game can be in.
     [Header("State Screen Objects")]
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
         // Press P to spawn player
         if (Input.GetKeyDown(KeyCode.P))
         {
-            SpawnPlayer(0);
+            SpawnPlayer();
         }
 
         // Press R to spawn AI
@@ -87,25 +88,47 @@ public class GameManager : MonoBehaviour
     
 
     // Press P to spawn player Tank
-    public void SpawnPlayer(int playerNumber)
+    public void SpawnPlayer()
     {
         // Test code
         //int spawn = Random.Range(0, spawnLocations.Length);
         //GameObject.Instantiate(player, spawnLocations[spawn].transform.position, Quaternion.identity);
 
+        setPlayerSpawn();
 
-        Vector3 randomSpawnPosition = tankSpawns[Random.Range(0, tankSpawns.Count)].transform.position;
+        // Second Test zone
 
-        GameObject newPawn = Instantiate(pawnPrefab, randomSpawnPosition,
-            Quaternion.identity);
-        Pawn newPawnScript = newPawn.GetComponent<Pawn>();
-        if (newPawnScript != null)
-        {
-            if (players.Count > playerNumber)
-            {
-                LinkPawnAndController(newPawnScript, players[playerNumber]);
-            }
-        }
+        // Spawn playerController at origin with no rotation
+        GameObject newPlayerObj = Instantiate(player, 
+            Vector3.zero, Quaternion.identity) as GameObject;
+
+        // spawn the pawn and connect it to the controller
+        GameObject newPawnObj = Instantiate
+            (pawnPrefab, playerSpawnTransform.position,
+            playerSpawnTransform.rotation) as GameObject;
+
+        // get the playerController component and the pawn component
+        KeyboardController newController = 
+            newPlayerObj.GetComponent<KeyboardController>();
+
+        Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+
+        // connect the new objects
+        newController.pawn = newPawn;
+        newPawn.controller = newController;
+
+        //Vector3 randomSpawnPosition = tankSpawns[Random.Range(0, tankSpawns.Count)].transform.position;
+
+        //GameObject newPawn = Instantiate(pawnPrefab, randomSpawnPosition,
+        //    Quaternion.identity);
+        //Pawn newPawnScript = newPawn.GetComponent<Pawn>();
+        //if (newPawnScript != null)
+        //{
+        //    if (players.Count > playerNumber)
+        //    {
+        //        LinkPawnAndController(newPawnScript, players[playerNumber]);
+        //    }
+        //}
     }
 
     // Links player controller with spawned tanks.
@@ -130,6 +153,12 @@ public class GameManager : MonoBehaviour
         AI_Tank.pawn = newPawnScript;
 
         
+    }
+
+    public void setPlayerSpawn()
+    {
+        int temp = Random.Range(0, spawn.Length);
+        playerSpawnTransform = spawn[temp].GetComponent<Transform>();
     }
 
     // Deactivate all non gameplay states
@@ -169,10 +198,12 @@ public class GameManager : MonoBehaviour
 
         //respawnLocation = player.transform.position;
 
+        spawn = FindObjectsOfType<TankSpawn>();
+        
         // TODO: 1 Spawn my player controller(s)
         KeyboardController player1 = Instantiate(WASDprefab);
         // TODO: Spawn the player pawn(s)
-        SpawnPlayer(0);
+        SpawnPlayer();
         // TODO: Spawn the enemies
         // TODO: Make sure scores set to 0
         player1.score = 0;

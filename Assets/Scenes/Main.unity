@@ -1446,6 +1446,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6490976136933338514, guid: fdff824fabfd1b448914bf5b53913fae, type: 3}
+      propertyPath: moveSpeed
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdff824fabfd1b448914bf5b53913fae, type: 3}
 --- !u!1 &592430748
@@ -1705,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ece7611a640e9c4ba2424fb66dd3b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 3987391858882453857, guid: fdff824fabfd1b448914bf5b53913fae, type: 3}
+  target: {fileID: 0}
   offset: {x: 0, y: 30, z: 0}
   isRightSide: 1
 --- !u!1 &652838558
@@ -2932,7 +2936,7 @@ MonoBehaviour:
   AI:
   - {fileID: 0}
   pawnPrefab: {fileID: 3987391858882453857, guid: fdff824fabfd1b448914bf5b53913fae, type: 3}
-  tankSpawns: []
+  spawn: []
   titleScreenStateObject: {fileID: 1414959823}
   mainMenuScreenStateObject: {fileID: 2058716162}
   gamePlayStateObject: {fileID: 1194805331}
@@ -4263,6 +4267,7 @@ MonoBehaviour:
   - {fileID: 11411052, guid: ce113764d5f7ba8468c8c6476b92c5fc, type: 3}
   - {fileID: 11411052, guid: 2d643470b2ba1b845aec3ff9296169e6, type: 3}
   - {fileID: 11411052, guid: 1cf3eed99acc2d34c87b7fd08a374941, type: 3}
+  Spawnpoints: []
   numberOfRows: 5
   numberOfCols: 5
   randomSeed: 0

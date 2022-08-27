@@ -14,6 +14,7 @@ public class LevelGenerator : MonoBehaviour
     // List of all rooms we could choose from
     public List<Room> possibleRooms;
     public List<TankSpawn> Spawnpoints;
+    private List<Transform> allSpawnpoints = new List<Transform>();
 
     // Data about our map
     private float roomWidth = 50.0f;
@@ -69,6 +70,7 @@ public class LevelGenerator : MonoBehaviour
         // Clear/Reset our grid 2D array
         grid = new Room[numberOfCols, numberOfRows];
 
+        
         // One row at a time
         for (int currentRow = 0;
             currentRow < numberOfRows; currentRow++)
@@ -81,6 +83,11 @@ public class LevelGenerator : MonoBehaviour
             {
                 // Instantiate a random room
                 Room newRoom = Instantiate(GetNextRoom()) as Room;
+
+                // Should create and place proper spawnpoints
+                allSpawnpoints.AddRange(newRoom.spawnpoints);
+
+
                 // Move it to the correct position
                 Vector3 newPosition = new Vector3
                     (currentCol * roomWidth, 0.0f,
@@ -121,7 +128,7 @@ public class LevelGenerator : MonoBehaviour
                 }
 
             }
-
+            
         }
 
     }
@@ -134,6 +141,8 @@ public class LevelGenerator : MonoBehaviour
         // For now, this just returns a random room
         return possibleRooms[Random.Range(0,
             possibleRooms.Count)];
+
+        
     }
 
     

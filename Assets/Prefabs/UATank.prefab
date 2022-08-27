@@ -34,7 +34,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3987391858882453857}
-  m_LocalRotation: {x: 0, y: -0.843504, z: 0, w: -0.53712296}
+  m_LocalRotation: {x: 0, y: -0.981087, z: 0, w: -0.1935673}
   m_LocalPosition: {x: 6.003244, y: 0.02753052, z: 1.1633482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24137ca2247ac6428415de420db86f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 15
   turnSpeed: 100
   killValue: 0
   controller: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   bigBulletPrefab: {fileID: 4143621705662861532, guid: 4019d90f92a142a4eb0bf38a19439f8c, type: 3}
   damageDone: 30
   bigDamageDone: 60
-  bigShootForce: 750
+  bigShootForce: 850
   shootForce: 1000
   TankFire: {fileID: 8300000, guid: 6c7595c60819c104d9b59e3fe80575a9, type: 3}
   BigTankFire: {fileID: 8300000, guid: 575d176f20002e041b3adb2a5de7c853, type: 3}

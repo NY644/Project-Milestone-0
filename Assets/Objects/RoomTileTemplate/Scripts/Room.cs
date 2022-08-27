@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class Room : MonoBehaviour {
@@ -8,6 +9,9 @@ public class Room : MonoBehaviour {
 	public GameObject doorSouth;
 	public GameObject doorEast;
 	public GameObject doorWest;
+
+	// Creates the spawnpoints
+	public List<Transform> spawnpoints;
 
 
 
