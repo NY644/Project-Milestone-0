@@ -112,4 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerup:
     lifespan: 5
-    speedBoost: 30
+    speedBoost: 2

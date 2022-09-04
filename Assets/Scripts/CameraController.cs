@@ -8,21 +8,30 @@ public class CameraController : MonoBehaviour
     public Vector3 offset;
     private Camera cameraComponent;
     public bool isRightSide;
+    public bool Fullscreen;
 
     // Start is called before the first frame update
     void Start()
     {
         cameraComponent = GetComponent<Camera>();
 
-        if (isRightSide)
+        if (Fullscreen)
+        {
+            MakeFullScreen();
+        }
+
+        else if (isRightSide)
         {
             MakeRightSideSplitScreen();
+            //TODO: Test full screen here.
+            // MakeFullScreen();
         }
 
         else
         {
             MakeLeftSideSplitScreen();
         }
+        
     }
 
     // Update is called once per frame
@@ -33,7 +42,9 @@ public class CameraController : MonoBehaviour
 
     public void MakeFullScreen()
     {
-        //TODO: Make Full Screen
+        // By doing nothing here, a new Rect is not created
+        // thus, it stays full screen.
+        cameraComponent.rect = new Rect(0, 0, 1, 1);
     }
 
     public void MakeLeftSideSplitScreen()

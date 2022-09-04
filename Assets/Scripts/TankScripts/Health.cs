@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     public float currentHealth;
     public TankPawn myPawn;
 
+    public AudioSource speaker;
+    public AudioClip tankDeath;
+
     // When the program starts,
     // the currentHealth is set to the
     // same as maxHealth
@@ -30,7 +33,7 @@ public class Health : MonoBehaviour
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
-            // TODO: Cool stuff on overheal
+            
         }
     }
 
@@ -41,10 +44,12 @@ public class Health : MonoBehaviour
 
         currentHealth = currentHealth - amount;
 
+        speaker.PlayOneShot(tankDeath);
         // If object health is = or less than 0 health
         // the Die function is called
         if (currentHealth <= 0)
         {
+            
             Die(owner);
         }
     }

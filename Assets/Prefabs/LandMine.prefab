@@ -112,4 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerup:
     lifespan: -1
-    takeDamage: 50
+    takeDamage: 100

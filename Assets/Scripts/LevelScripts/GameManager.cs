@@ -10,9 +10,14 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public List<KeyboardController> players;
     public List<KeyboardController> AI;
-    public GameObject pawnPrefab;
+
+    // These help the tank choose one of the spawnpoints
     public TankSpawn[] spawn;
     private Transform playerSpawnTransform;
+
+    // prefabs
+    public GameObject playerControllerPrefab;
+    public GameObject tankPawnPrefab;
 
     // These are different states the game can be in.
     [Header("State Screen Objects")]
@@ -28,26 +33,16 @@ public class GameManager : MonoBehaviour
     public float sfxVolume;
     public float musicVolume;
 
+    // Audio mixer used for audio
     public AudioMixer audioMixer;
+    public AudioSource speaker;
+    public AudioClip ButtonClicked;
 
+    // Generates the rooms for the map randomly
     public LevelGenerator roomGen;
 
-    // Variables for Keyboard controllers
-    public KeyboardController WASDprefab;
-    public KeyboardController Arrowprefab;
+    public int lives;
 
-    // Test variables
-    public GameObject[] spawnLocations;
-    public GameObject player;
-
-    private Vector3 respawnLocation;
-
-    // Start is called before the first frame update
-
-   void Start()
-    {
-        ActivateTitleScreenState();
-    }
 
     void Awake()
     {
@@ -65,10 +60,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        ActivateTitleScreenState();
+
+        // Lives are set to 4 because once
+        // the game starts, a player tank is spawned.
+        // this means lives is subtracted by 1.
+        // So the player actually starts with 3 lives.
+        lives = 4;
+       
+    }
+
     // Update is called once per frame
     void Update()
     {
-       // GameManager.instance.audioMixer.SetFloat("MusicVolume", 1.0f);
+      
 
         // Press P to spawn player
         if (Input.GetKeyDown(KeyCode.P))
@@ -81,30 +88,29 @@ public class GameManager : MonoBehaviour
         {
             SpawnAI();
         }
+
+        // Switches to game over screen and then resets lives to 4
+        if (lives == 0)
+        {
+            ActivateGameOverScreenState();
+            lives = 4;
+        }
     }
 
-    
-
-    
-
-    // Press P to spawn player Tank
+    // Function that spawns the player at a random
+    // spawnpoint and gives them their controller.
     public void SpawnPlayer()
     {
-        // Test code
-        //int spawn = Random.Range(0, spawnLocations.Length);
-        //GameObject.Instantiate(player, spawnLocations[spawn].transform.position, Quaternion.identity);
-
+        // Chooses one of the random spawnpoints.
         setPlayerSpawn();
 
-        // Second Test zone
-
         // Spawn playerController at origin with no rotation
-        GameObject newPlayerObj = Instantiate(player, 
+        GameObject newPlayerObj = Instantiate(playerControllerPrefab, 
             Vector3.zero, Quaternion.identity) as GameObject;
 
         // spawn the pawn and connect it to the controller
         GameObject newPawnObj = Instantiate
-            (pawnPrefab, playerSpawnTransform.position,
+            (tankPawnPrefab, playerSpawnTransform.position,
             playerSpawnTransform.rotation) as GameObject;
 
         // get the playerController component and the pawn component
@@ -117,39 +123,31 @@ public class GameManager : MonoBehaviour
         newController.pawn = newPawn;
         newPawn.controller = newController;
 
-        //Vector3 randomSpawnPosition = tankSpawns[Random.Range(0, tankSpawns.Count)].transform.position;
-
-        //GameObject newPawn = Instantiate(pawnPrefab, randomSpawnPosition,
-        //    Quaternion.identity);
-        //Pawn newPawnScript = newPawn.GetComponent<Pawn>();
-        //if (newPawnScript != null)
-        //{
-        //    if (players.Count > playerNumber)
-        //    {
-        //        LinkPawnAndController(newPawnScript, players[playerNumber]);
-        //    }
-        //}
+        // Every time this function is called, lives are
+        // subtracted by 1.
+        lives = lives - 1;
+        Debug.Log("You have " + lives + " lives remaining");
     }
 
-    // Links player controller with spawned tanks.
-    public void LinkPawnAndController( Pawn pawn, Controller controller)
-    {
-        controller.pawn = pawn;
-        pawn.controller = controller;
-    }
+   
 
     // Press R to spawn AI Tank
     public void SpawnAI()
     {
+        // Chooses a random spawnpoint for the AI.
+        setPlayerSpawn();
+
         GameObject newController = new GameObject();
 
         AIController_Simple AI_Tank = newController.AddComponent<AIController_Simple>();
 
-        GameObject newPawn = Instantiate(pawnPrefab, Vector3.zero,
-           Quaternion.identity);
+        // Places the AI tank pawn at the chosen random spawnpoint.
+        GameObject newPawn = Instantiate(tankPawnPrefab, playerSpawnTransform.position,
+            playerSpawnTransform.rotation) as GameObject;
 
         Pawn newPawnScript = newPawn.GetComponent<Pawn>();
 
+        // Connects the controller and the pawn together.
         AI_Tank.pawn = newPawnScript;
 
         
@@ -159,6 +157,8 @@ public class GameManager : MonoBehaviour
     {
         int temp = Random.Range(0, spawn.Length);
         playerSpawnTransform = spawn[temp].GetComponent<Transform>();
+
+       
     }
 
     // Deactivate all non gameplay states
@@ -167,12 +167,15 @@ public class GameManager : MonoBehaviour
         titleScreenStateObject.SetActive(false);
         mainMenuScreenStateObject.SetActive(false);
         optionsScreenStateObject.SetActive(false);
+        gameOverScreenStateObject.SetActive(false);
+        gamePlayStateObject.SetActive(false);
     }
 
     // Puts game in main menu state
     public void ActivateMainMenuState()
     {
         DeactivateAllStates();
+        speaker.PlayOneShot(ButtonClicked);
         mainMenuScreenStateObject.SetActive(true);
     }
 
@@ -189,32 +192,27 @@ public class GameManager : MonoBehaviour
         DeactivateAllStates();
         gamePlayStateObject.SetActive(true);
 
-        
+        // Randomly generates the levels.
         roomGen.GenerateLevel();
 
-        //spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
-
-        //player = (GameObject)Resources.Load("UATank", typeof(GameObject));
-
-        //respawnLocation = player.transform.position;
-
+       
+        // Finds objects called tank spawns
         spawn = FindObjectsOfType<TankSpawn>();
-        
-        // TODO: 1 Spawn my player controller(s)
-        KeyboardController player1 = Instantiate(WASDprefab);
-        // TODO: Spawn the player pawn(s)
+
+        // Spawns the AI
+        SpawnAI();
+
+        // Spawns the Player
         SpawnPlayer();
-        // TODO: Spawn the enemies
-        // TODO: Make sure scores set to 0
-        player1.score = 0;
+     
         // If One Player, set a camera for one player
         // If two player, set/create? cameras for two player
     }
 
-    public bool IsGameOver()
+    public void ActivateGameOverScreenState()
     {
-        //TODO: Write this later
-        return false;
+        DeactivateAllStates();
+        gameOverScreenStateObject.SetActive(true);
     }
 
     public void ActivateOptionsScreenState()

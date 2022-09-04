@@ -6,6 +6,9 @@ public class PowerUpManager : MonoBehaviour
 {
     public List<PowerUp> powerups;
 
+    public AudioSource speaker;
+    public AudioClip ItemGrab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,7 @@ public class PowerUpManager : MonoBehaviour
         // Actually apply the powerup
         powerupToApply.Apply(this);
 
+        speaker.PlayOneShot(ItemGrab);
         // If it has an invalid duration
         // (negative) then don't add it so it lasts forever
         if (powerupToApply.lifespan < 0)
